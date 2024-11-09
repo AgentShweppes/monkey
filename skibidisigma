@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Games Website</title>
+    <style>
+        /* style.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            background-color: #444;
+            padding: 10px;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 5px 10px;
+        }
+
+        nav a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game {
+            margin: 20px 0;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .game h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .game-container {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #ccc;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to the Multi-Game Website</h1>
+        <p>Play a variety of games here!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#game1">Game 1</a></li>
+            <li><a href="#game2">Game 2</a></li>
+            <li><a href="#game3">Game 3</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Game 1: Tic Tac Toe -->
+        <section id="game1" class="game">
+            <h2>Game 1: Tic Tac Toe</h2>
+            <div class="game-container">
+                <div id="tic-tac-toe" style="width: 100%; height: 100%;"></div>
+            </div>
+        </section>
+
+        <!-- Game 2: Snake -->
+        <section id="game2" class="game">
+            <h2>Game 2: Snake</h2>
+            <div class="game-container">
+                <iframe src="https://playsnake.org" frameborder="0"></iframe>
+            </div>
+        </section>
+
+        <!-- Game 3: Pong -->
+        <section id="game3" class="game">
+            <h2>Game 3: Pong</h2>
+            <div class="game-container">
+                <iframe src="https://ponggame.org" frameborder="0"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created with ❤️ by YourName</p>
+    </footer>
+
+    <script>
+        // Example code for a simple Tic Tac Toe game:
+        const gameContainer = document.getElementById('tic-tac-toe');
+
+        const createBoard = () => {
+            const board = document.createElement('div');
+            board.style.display = 'grid';
+            board.style.gridTemplateColumns = 'repeat(3, 100px)';
+            board.style.gridTemplateRows = 'repeat(3, 100px)';
+            board.style.gap = '5px';
+            board.style.justifyContent = 'center';
+
+            let turn = 'X';
+            let gameBoard = ['', '', '', '', '', '', '', '', ''];
+
+            const handleClick = (index) => {
+                if (!gameBoard[index]) {
+                    gameBoard[index] = turn;
+                    cells[index].textContent = turn;
+                    turn = turn === 'X' ? 'O' : 'X';
+                }
+            };
+
+            const cells = gameBoard.map((_, index) => {
+                const cell = document.createElement('div');
+                cell.style.width = '100px';
+                cell.style.height = '100px';
+                cell.style.display = 'flex';
+                cell.style.alignItems = 'center';
+                cell.style.justifyContent = 'center';
+                cell.style.border = '1px solid #000';
+                cell.style.fontSize = '2em';
+                cell.addEventListener('click', () => handleClick(index));
+                board.appendChild(cell);
+                return cell;
+            });
+
+            gameContainer.innerHTML = '';  // Clear previous content
+            gameContainer.appendChild(board);
+        };
+
+        createBoard();  // Create the board when the page loads
+    </script>
+
+</body>
+</html>
+
